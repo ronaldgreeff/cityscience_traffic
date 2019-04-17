@@ -3,25 +3,25 @@
 A (Django) RESTful API providing traffic counts for Devon, South West.
 
 
-# BUILD
+## BUILD
 Python==3.7
 Django==2.2
 djangorestframework==3.9.2
 
 
-# SETTING UP LOCALLY
+## SETTING UP LOCALLY
 1. Edit environment details env.ps1 / env.sh as appropriate
 2. Start the virtualenv with:
 
-  > Bash
-  python3 -m venv venv
-  source venv/bin/activate
-  source ./env.sh
+  * ### Bash
+      * python3 -m venv venv
+      * source venv/bin/activate
+      * source ./env.sh
 
-  > PowerShell
-  py -3 -m venv venv
-  venv\scripts\activate
-  .\env.ps1
+  * ### PowerShell
+      * py -3 -m venv venv
+      * venv\scripts\activate
+      * .\env.ps1
 
 3. Install requirements (pip install -r requirements.txt)
 4. Setup postgres database
@@ -32,11 +32,11 @@ djangorestframework==3.9.2
 9. Run 'python manage.py runserver' and check that the data succesfully imported by visiting http://127.0.0.1:8000
 
 
-# DEMO
+## DEMO
 https://citysci-traffic.azurewebsites.net
 
 
-# HOW TO USE
+## HOW TO USE
 The API root (127.0.0.1:8000, or the demo link above) offers two means of accessing data:
 
 "records" - Provides traffic counts per record (a record defined by location and time), with record-level filtering (year, estimation method, detailed estimation method, road and road category), and vehicle counts as a nested list.
@@ -48,24 +48,24 @@ After selecting you access root, you can either use the "filter" button in the t
 http://citysci-traffic.azurewebsites.net/records/?year=2000&estimation_method=0&estimation_method_detailed=0&road=0
 
 Would filter records by:
-    Year: 2000
-    Estimation Method: Counted
-    Estimation Method Detailed: Manual Count
-    Road: A381
+    * Year: 2000
+    * Estimation Method: Counted
+    * Estimation Method Detailed: Manual Count
+    * Road: A381
 
 For more granular filtering, use http://citysci-traffic.azurewebsites.net/vehiclecounts/
 
 An API mapping reference for URL parameters is provided below.
 
 
-#CUSTOMISATION
+## CUSTOMISATION
 
 1. FILTERING criteria can be customised by adding/removing fields from "filterset_fields" from either of the views specified in the views.py file.
 
 2. DATA (fields and values) returned can be customised by adding/removing fields under 'class Meta' for each of the serializers specified in the serializers.py file.
 
 
-# API MAPPING REFERENCE (FOR URL PARAMETERS):
+## API MAPPING REFERENCE (FOR URL PARAMETERS):
 
     estimation_method:
         0: COUNTED
