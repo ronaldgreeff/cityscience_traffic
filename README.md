@@ -13,12 +13,12 @@ djangorestframework==3.9.2
 1. Edit environment details env.ps1 / env.sh as appropriate
 2. Start the virtualenv with:
 
-  # Bash
+  > Bash
   python3 -m venv venv
   source venv/bin/activate
   source ./env.sh
 
-  # PowerShell
+  > PowerShell
   py -3 -m venv venv
   venv\scripts\activate
   .\env.ps1
