@@ -10,8 +10,9 @@ A (Django) RESTful API providing traffic counts for Devon, South West.
 
 
 ## SETTING UP LOCALLY
-1. Edit environment details env.ps1 / env.sh as appropriate
-2. Start the virtualenv with:
+1. Set up your Postgres database
+2. Edit environment details env.ps1 / env.sh as appropriate
+3. Start the virtualenv with:
 
   * ### Bash
       * python3 -m venv venv
@@ -23,8 +24,7 @@ A (Django) RESTful API providing traffic counts for Devon, South West.
       * venv\scripts\activate
       * .\env.ps1
 
-3. Install requirements (pip install -r requirements.txt)
-4. Setup postgres database
+4. Run 'pip install -r requirements.txt'
 5. Run 'django makemigrations'
 6. Run 'django migrate'
 7. Run 'django createsuperuser'
@@ -37,13 +37,13 @@ https://citysci-traffic.azurewebsites.net
 
 
 ## HOW TO USE
-The API root (127.0.0.1:8000, or the demo link above) offers two means of accessing data:
+The API root (127.0.0.1:8000, or the demo link above) offers two ways of accessing data:
 
-"records" - Provides traffic counts per record (a record defined by location and time), with record-level filtering (year, estimation method, detailed estimation method, road and road category), and vehicle counts as a nested list.
+"records" provides all of the traffic counts per record (a record defined by location and time), with record-level filtering (year, estimation method, detailed estimation method, road and road category), and vehicle counts as a nested list.
 
-"vehiclecounts" - Provides a traffic counts per vehicle type, with granular filtering on both record and vehicle type.
+"vehiclecounts" provides all traffic counts per vehicle type, with granular filtering on both record and vehicle type.
 
-After selecting you access root, you can either use the "filter" button in the top right or query parameters to filter the data. For example, this query:
+After selecting your preferred route, you can explore traffic count data by either using the "filter" button (in the top right of the page) or URL query parameters. For example, this query:
 
 http://citysci-traffic.azurewebsites.net/records/?year=2000&estimation_method=0&estimation_method_detailed=0&road=0
 
