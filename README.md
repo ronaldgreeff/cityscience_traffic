@@ -4,9 +4,9 @@ A (Django) RESTful API providing traffic counts for Devon, South West.
 
 
 ## BUILD
-Python==3.7
-Django==2.2
-djangorestframework==3.9.2
+* Python==3.7
+* Django==2.2
+* djangorestframework==3.9.2
 
 
 ## SETTING UP LOCALLY
