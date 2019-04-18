@@ -21,7 +21,7 @@ def convert_to_lonlat(easting, northing):
     return rle[1][0], rle[0][0]
 
 
-def create_records():
+def create_records(_print=True):
 
     for c, row in enumerate(df.to_dict(orient='records')):
 
@@ -48,40 +48,34 @@ def create_records():
             junc_end = row['EndJunction'],
             len_net_km = row['LinkLength_km'],
             len_net_mi = row['LinkLength_miles'],
-            # record_year = row['AADFYear'],
-            # AllHGVs = row['AllHGVs'],
-            # AllMotorVehicles = row['AllMotorVehicles'],
-            # PedalCycles = row['PedalCycles'],
-            # Motorcycles = row['Motorcycles'],
-            # CarsTaxis = row['CarsTaxis'],
-            # BusesCoaches = row['BusesCoaches'],
-            # LightGoodsVehicles = row['LightGoodsVehicles'],
-            # V2AxleRigidHGV = row['V2AxleRigidHGV'],
-            # V3AxleRigidHGV = row['V3AxleRigidHGV'],
-            # V4or5AxleRigidHGV = row['V4or5AxleRigidHGV'],
-            # V3or4AxleArticHGV = row['V3or4AxleArticHGV'],
-            # V5AxleArticHGV = row['V5AxleArticHGV'],
         )
-        print(' | {} - {}'.format(s1, c))
+
+        if _print == True:
+            print(' | {} - {}'.format(s1, c))
 
         for cv, vehicle_type in enumerate(vehicle_types):
             vc, s2 = VehicleCount.objects.get_or_create(record=r,
                 vehicle_type=dict(map(reversed, VehicleCount.VEHICLE_TYPES))[vehicle_type],
                 count=row[vehicle_type])
-            print(' - {} - {}'.format(s2, cv))
 
+            if _print == True:
+                    print(' | {} - {}'.format(s1, c))
 
 create_records()
 
-# > get set(row[value])
-# l = []
-# for row in df.to_dict(orient='records'):
-#     l.append( row['Road'] )
-# print(set(l))
 
+# Get a set of all available col values
+# print( set( [row['Road'] for row in df.to_dict(orient='records')]))
 
-# > get max(len()) for each field
+# Get max length of string fields / max of int/float fields
 # l3 = []
-# for h in df.head():
-#   l3.append( {h: max([len(str(l)) for l in (set([x for x in df[h]]))]) } )
+# for header in df.head():
+#     all_unique_values_in_col = set([item for item in df[header]])
+#     unique_val_len = []
+#     for unique_value in all_unique_values_in_col:
+#         if not isinstance(unique_value, int) and not isinstance(unique_value, float):
+#             unique_val_len.append(len(unique_value))
+#         else:
+#             unique_val_len.append(unique_value)
+#     l3.append( {header: max(unique_val_len)} )
 # print(l3)
