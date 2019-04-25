@@ -59,7 +59,7 @@ def create_records(_print=True):
             )
         )
 
-    Record.objects.bulk_create(objs)
+    Record.objects.bulk_create(record_objects)
     print('{} records succesfully created'.format(len(record_objects)))
 
 create_records()

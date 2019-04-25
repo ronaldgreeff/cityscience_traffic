@@ -10,4 +10,6 @@ class RecordViewSet(viewsets.ReadOnlyModelViewSet)    :
     queryset = Record.objects.all()
     serializer_class = DataSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = '__all__'
+    filterset_fields = ["id", "year", "count_point_ref", "estimation_method",
+        "estimation_method_detailed", "road", "road_category", "easting", "latitude",
+        "northing", "longitude", "junc_start", "junc_end", "len_net_km", "len_net_mi"]
