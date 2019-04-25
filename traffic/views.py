@@ -1,23 +1,13 @@
-from traffic.serializers import VehicleCountSerializer, RecordSerializer
-from traffic.models import Record, VehicleCount
+from traffic.serializers import DataSerializer
+from traffic.models import Record
 from django_filters import rest_framework as filters
 from django.shortcuts import render
 from rest_framework import viewsets
 
 
-class RecordsViewSet(viewsets.ReadOnlyModelViewSet):
-    """ Counts for all vehicle types by record. Filtered by record criteria. """
+class RecordViewSet(viewsets.ReadOnlyModelViewSet)    :
+    """ List of all traffic count records """
     queryset = Record.objects.all()
-    serializer_class = RecordSerializer
+    serializer_class = DataSerializer
     filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('year', 'estimation_method',
-        'estimation_method_detailed', 'road', 'road_category',)
-
-
-class VehicleCountsViewSet(viewsets.ReadOnlyModelViewSet):
-    """ Counts by vehicle type. Granular filtering by record and vehicle criteria. """
-    queryset = VehicleCount.objects.all().select_related('record')
-    serializer_class = VehicleCountSerializer
-    filter_backends = (filters.DjangoFilterBackend,)
-    filterset_fields = ('vehicle_type', 'record__year', 'record__estimation_method',
-        'record__estimation_method_detailed', 'record__road', 'record__road_category',)
+    filterset_fields = '__all__'
