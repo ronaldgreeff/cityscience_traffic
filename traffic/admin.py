@@ -1,4 +1,4 @@
 from django.contrib import admin
-from traffic.models import Record
+from traffic.models import Count
 
-admin.site.register(Record)
+admin.site.register(Count)

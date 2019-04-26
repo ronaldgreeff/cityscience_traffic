@@ -23,7 +23,7 @@ from traffic import views
 router = DefaultRouter()
 router.get_api_root_view().cls.__doc__ = '<a href="{}">A (Django) RESTful API providing traffic counts for Devon, South West.</a>'.format('https://github.com/ronaldgreeff/cityscience_traffic')
 
-router.register(r'records', views.RecordViewSet)
+router.register(r'count', views.CountViewSet)
 
 
 urlpatterns = [
