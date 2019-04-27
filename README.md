@@ -16,11 +16,11 @@ A (Django) RESTful API providing traffic counts for Devon, South West.
 
   * ### Bash
       * $ python -m venv venv
-      * $ source venv/bin/activate  # ($ source venv/scripts/activate on Windows)
+      * $ $ source venv/scripts/activate
       * $ source ./env.sh
 
   * ### PowerShell
-      * $ py -m venv venv
+      * $ python -m venv venv
       * $ venv\scripts\activate
       * $ .\env.ps1
 
