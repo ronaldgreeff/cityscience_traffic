@@ -1,5 +1,10 @@
 from django.db import models
 
+class RoadName(models.Model):
+    name = models.CharField(max_length=50)
+    def __str__(self):
+        return str(self.name)
+
 class Date(models.Model):
     year = models.IntegerField()
     def __str__(self):
@@ -13,12 +18,12 @@ class Category(models.Model):
 class StartJunction(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
-        return 'Junc {}'.format(self.name)
+        return '{}'.format(self.name)
 
 class EndJunction(models.Model):
     name = models.CharField(max_length=100)
     def __str__(self):
-        return 'Junc {}'.format(self.name)
+        return '{}'.format(self.name)
 
 class BasicCountMethod(models.Model):
     method = models.CharField(max_length=10)
@@ -32,8 +37,8 @@ class DetailedCountMethod(models.Model):
 
 
 
-class Road(models.Model):
-    name = models.CharField(max_length=10)
+class RoadInfo(models.Model):
+    road = models.ForeignKey(RoadName, on_delete='CASCADE')
     category = models.ForeignKey(Category, on_delete='CASCADE')
     junc_start = models.ForeignKey(StartJunction, on_delete='CASCADE', related_name='junc_start')
     junc_end = models.ForeignKey(EndJunction, on_delete='CASCADE', related_name='junc_end')
@@ -41,7 +46,7 @@ class Road(models.Model):
     len_km = models.FloatField()
 
     def __str__(self):
-        return self.name
+        return str(self.road)
 
 class Location(models.Model):
     count_point_ref = models.IntegerField()
@@ -65,7 +70,7 @@ class CountMethod(models.Model):
 
 
 class Record(models.Model):
-    road = models.ForeignKey(Road, on_delete='CASCADE')
+    road = models.ForeignKey(RoadInfo, on_delete='CASCADE')
     date = models.ForeignKey(Date, on_delete='CASCADE')
     count_method = models.ForeignKey(CountMethod, on_delete='CASCADE')
     location = models.OneToOneField(Location, on_delete='CASCADE')

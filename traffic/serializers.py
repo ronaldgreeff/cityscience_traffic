@@ -9,7 +9,7 @@ class DateSerializer(serializers.ModelSerializer):
         exclude = ('id',)
 
 class RoadSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
+    road = serializers.CharField()
     category = serializers.CharField()
     junc_start = serializers.CharField()
     junc_end = serializers.CharField()
@@ -17,7 +17,7 @@ class RoadSerializer(serializers.ModelSerializer):
     len_km = serializers.FloatField()
 
     class Meta:
-        model = Road
+        model = RoadInfo
         exclude = ('id',)
 
 class LocationSerializer(serializers.ModelSerializer):
