@@ -61,8 +61,8 @@ class Location(models.Model):
 
 
 class CountMethod(models.Model):
-    basic_count_method = models.OneToOneField(BasicCountMethod, on_delete='CASCADE')
-    detailed_count_method = models.OneToOneField(DetailedCountMethod, on_delete='CASCADE')
+    basic_count_method = models.ForeignKey(BasicCountMethod, on_delete='CASCADE')
+    detailed_count_method = models.ForeignKey(DetailedCountMethod, on_delete='CASCADE')
 
     def __str__(self):
         return '{}: {}'.format(str(self.basic_count_method).upper(),
@@ -73,7 +73,7 @@ class Record(models.Model):
     road = models.ForeignKey(RoadInfo, on_delete='CASCADE')
     date = models.ForeignKey(Date, on_delete='CASCADE')
     count_method = models.ForeignKey(CountMethod, on_delete='CASCADE')
-    location = models.OneToOneField(Location, on_delete='CASCADE')
+    location = models.ForeignKey(Location, on_delete='CASCADE')
 
     def __str__(self):
         return '{}: {}'.format(self.year, self.road)
